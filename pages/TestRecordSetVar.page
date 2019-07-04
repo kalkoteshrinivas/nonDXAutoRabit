@@ -1,0 +1,7 @@
+<apex:page standardController="Marks__c" recordSetVar="marks">
+  <apex:form >
+      <apex:dataTable value="{!marks}" var="mark">
+          <apex:column value="{!mark.Name}"/>
+      </apex:dataTable>
+  </apex:form>  
+</apex:page>

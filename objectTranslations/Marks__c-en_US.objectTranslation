@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Marks</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Marks</value>
+    </caseValues>
+    <fields>
+        <label><!-- Marks Obtained --></label>
+        <name>Marks_Obtained__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maximum Marks --></label>
+        <name>Maximum_Marks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Marks --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Name of the subject --></help>
+        <label><!-- Subject Name --></label>
+        <name>Subject_Name__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- MARKS OBTAINED CANNOT BE GREATER THAN MAXIMUM MARKS FOR THE SUBJECT --></errorMessage>
+        <name>MARKS_CANT_BE_GREATER_THAN_MAX_MARKS</name>
+    </validationRules>
+</CustomObjectTranslation>

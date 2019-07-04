@@ -1,0 +1,13 @@
+<apex:page >
+      
+      <apex:tabPanel >
+          <apex:tab label="FirstTab">
+              <apex:include pageName="Tab1Page"/>
+          </apex:tab>
+              
+          <apex:tab label="SecondTab">
+              <apex:include pageName="Tab2Page"/>
+          </apex:tab>
+      </apex:tabPanel>
+      
+</apex:page>

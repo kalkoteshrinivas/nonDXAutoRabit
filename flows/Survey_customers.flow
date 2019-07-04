@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>Participate_No</name>
+        <choiceText>No</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>No</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Participate_Yes</name>
+        <choiceText>Yes</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Yes</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Satisfaction_No_Opinion</name>
+        <choiceText>No Opinion</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>No Opinion</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Satisfaction_Satisfied</name>
+        <choiceText>Satisfied</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Satisfied</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Satisfaction_Somewhat_Satisfied</name>
+        <choiceText>Somewhat Satisfied</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Somewhat Satisfied</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Satisfaction_Somewhat_Unsatisfied</name>
+        <choiceText>Somewhat Unsatisfied</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Somewhat Unsatisfied</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Service_Excellent</name>
+        <choiceText>Excellent</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Excellent</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Service_Needs_Improvement</name>
+        <choiceText>Needs Improvement</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Needs Improvement</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Service_No_Opinion</name>
+        <choiceText>No Opinion</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>No Opinion</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Want_to_Participate</name>
+        <label>Want to Participate?</label>
+        <locationX>319</locationX>
+        <locationY>22</locationY>
+        <defaultConnector>
+            <targetReference>Thank_Customer</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Customer_Response</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Participate_Yes</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Survey_Customer</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Description, type Script for gathering customer satisfaction data</description>
+    <interviewLabel>Survey customers {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Survey customers</label>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Survey_Record</name>
+        <label>Create Survey Record</label>
+        <locationX>523</locationX>
+        <locationY>157</locationY>
+        <connector>
+            <targetReference>Thank_Customer</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Comments__c</field>
+            <value>
+                <elementReference>OtherComments</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Company_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Satisfaction__c</field>
+            <value>
+                <elementReference>Satisfaction</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Service__c</field>
+            <value>
+                <elementReference>Service</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Customer_Satisfaction_Survey__c</object>
+    </recordCreates>
+    <screens>
+        <name>Greet_Customer</name>
+        <label>Greet Customer</label>
+        <locationX>90</locationX>
+        <locationY>25</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Want_to_Participate</targetReference>
+        </connector>
+        <fields>
+            <name>WelcomeMessage</name>
+            <fieldText>&lt;SPAN ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Hello. My name is [Your First Name] from Acme Wireless&lt;/FONT&gt;&lt;/SPAN&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Customer Relations.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;text box&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;According to our records, you are currently a Preferred&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Repair customer. We are very interested in hearing about&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;your experience with this service. Do you have time to&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;answer a few short questions?&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Customer_Response</name>
+            <choiceReferences>Participate_Yes</choiceReferences>
+            <choiceReferences>Participate_No</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Customer Response</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Survey_Customer</name>
+        <label>Survey Customer</label>
+        <locationX>520</locationX>
+        <locationY>20</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Create_Survey_Record</targetReference>
+        </connector>
+        <fields>
+            <name>ParticipationThanks</name>
+            <fieldText>Thank you for agreeing to participate in our survey.</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Company_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Before we begin, can you confirm the name of the companyyou work for?</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Service</name>
+            <choiceReferences>Service_Excellent</choiceReferences>
+            <choiceReferences>Service_No_Opinion</choiceReferences>
+            <choiceReferences>Service_Needs_Improvement</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Of the following options, how would you rate yourinteractions with the Preferred Repair team?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Satisfaction</name>
+            <choiceReferences>Satisfaction_Satisfied</choiceReferences>
+            <choiceReferences>Satisfaction_Somewhat_Satisfied</choiceReferences>
+            <choiceReferences>Satisfaction_No_Opinion</choiceReferences>
+            <choiceReferences>Satisfaction_Somewhat_Unsatisfied</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Of the following options, how satisfied are you with Acme&apos;sPreferred Repair service?</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>OtherComments</name>
+            <fieldText>Do you have any other comments you&apos;d like to share withus?</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Thank_Customer</name>
+        <label>Thank Customer</label>
+        <locationX>302</locationX>
+        <locationY>235</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ThankCustomer</name>
+            <fieldText>Thank you for your time. On behalf of everyone at Acme
+Wireless, we&apos;d like to thank you for being a customer. Have
+a great day!</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Greet_Customer</startElementReference>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,7 @@
+<apex:page controller="PublicPageForSiteController">
+  <apex:form >
+      <apex:outputLabel value="Select File"/>
+      <apex:inputFile value="{!blobData}"/>
+      <apex:commandButton value="Save" action="{!saveFile}"/>
+  </apex:form>
+</apex:page>

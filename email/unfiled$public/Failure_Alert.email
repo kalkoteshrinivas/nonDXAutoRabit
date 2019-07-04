@@ -1,0 +1,6 @@
+Dear Parent, 
+
+We regret to inform you that your child, {!Student__c.Name}, has performed poorly in the recent tests, scoring a mere {!Student__c.OVERALL_PERCENTAGE__c}% marks. 
+
+Regards, 
+School Administration

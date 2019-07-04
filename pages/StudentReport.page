@@ -1,0 +1,13 @@
+<apex:page controller="StudentReportController">
+<apex:pageBlock title="Student Report">
+<apex:repeat value="{!mapOfMarks}" var="student">
+<apex:pageBlockSection title="{!student}">
+<apex:pageBlockTable value="{!mapOfMarks[student]}" var="mark">
+<apex:column value="{!mark.Subject_Name__c}"/>
+<apex:column value="{!mark.Marks_Obtained__c}"/>
+<apex:column value="{!mark.Maximum_Marks__c}"/>
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+</apex:repeat>
+</apex:pageBlock>
+</apex:page>

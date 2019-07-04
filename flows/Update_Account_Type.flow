@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Post_to_chatter_for_account_update</name>
+        <label>Post to chatter for account update</label>
+        <locationX>397</locationX>
+        <locationY>220</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>Update_Account_Record</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Account type updated.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>Update Account Type</interviewLabel>
+    <label>Update Account Type</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Account_Record</name>
+        <label>Update Account Record</label>
+        <locationX>396</locationX>
+        <locationY>79</locationY>
+        <connector>
+            <targetReference>Post_to_chatter_for_account_update</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Test</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <startElementReference>Update_Account_Record</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>accountID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

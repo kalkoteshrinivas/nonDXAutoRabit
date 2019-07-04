@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModerationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <action>FreezeAndNotify</action>
+    <actionLimit>15</actionLimit>
+    <active>true</active>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>ContentVersion</entityName>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedComment</entityName>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>ChatterMessage</entityName>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedPollChoice</entityName>
+    </entitiesAndFields>
+    <masterLabel>Test</masterLabel>
+    <notifyLimit>10</notifyLimit>
+    <timePeriod>Medium</timePeriod>
+    <type>Rate</type>
+    <userCriteria>shrinivas Belong POC.Test</userCriteria>
+</ModerationRule>

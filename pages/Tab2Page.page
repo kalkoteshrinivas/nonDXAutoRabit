@@ -1,0 +1,15 @@
+<apex:page >
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    function enableButton()
+    {
+        alert('changed');
+        $(".someclass").removeAttr('disabled');
+    }
+</script>   
+    <apex:form >
+        <apex:outputLabel >Input Value</apex:outputLabel>
+        <apex:inputText onChange="enableButton();" />
+        <apex:commandButton id="SaveButton" value="Save" styleClass="someclass"/>
+    </apex:form>
+</apex:page>

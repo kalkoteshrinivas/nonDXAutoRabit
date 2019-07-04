@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Child Queue</name>
+    <queueMembers>
+        <users>
+            <user>shrinivas.kalkote@systempartners.com.self</user>
+            <user>kalkoteshrinivas@self.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Account_Child__c</sobjectType>
+    </queueSobject>
+</Queue>

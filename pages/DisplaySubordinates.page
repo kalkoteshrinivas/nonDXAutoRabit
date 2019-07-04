@@ -1,0 +1,29 @@
+<apex:page controller="DisplayUserSubordinates" readOnly="true">
+    <script>
+        function afl(smvalue)
+        {
+            alert(smvalue);
+            //showSelectedUserSubordibates();
+        }
+    </script>
+    <apex:form >
+        <apex:pageBlock >      
+          <apex:pageBlockButtons >
+              <apex:commandButton value="Show" action="{!showSelectedUserSubordinates}" reRender="DisplaySubordiantesTable" />
+          </apex:pageBlockButtons>
+          
+          <apex:pageblocksection rendered="{!bIsSystemAdminLoggedIn}" id="SelectUserSection">
+              <apex:inputField value="{!oUserTemp.ManagerId}" id="SelectUserField" onChange="afl('{!oUserTemp.ManagerId}')"/>               
+          </apex:pageblocksection>
+          <apex:pageBlockTable value="{!lstUsers}" var="oUser" id="DisplaySubordiantesTable">
+              <apex:column headerValue="User Name" id="UserNameColumn">
+                 <apex:outputLink value="/{!oUser.Id}" target="Parent">{!oUser.Name}</apex:outputLink>
+              </apex:column>
+              <apex:column headerValue="Role Name" id="RoleNameColumn">
+                 <apex:outputLabel value="{!oUser.UserRole.Name}" />
+              </apex:column>   
+          </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:actionFunction name="showSelectedUserSubordibates" action="{!showSelectedUserSubordinates}" reRender="DisplaySubordiantesTable"/>  
+    </apex:form>        
+</apex:page>

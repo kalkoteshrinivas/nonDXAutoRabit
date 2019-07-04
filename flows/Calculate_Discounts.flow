@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>Determine_Discount</name>
+        <label>Determine Discount</label>
+        <locationX>291</locationX>
+        <locationY>88</locationY>
+        <defaultConnectorLabel>No Discount</defaultConnectorLabel>
+        <rules>
+            <name>Full_Discount</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AccountRevenue</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>2.0E8</numberValue>
+                </rightValue>
+            </conditions>
+            <label>Full Discount</label>
+        </rules>
+        <rules>
+            <name>Partial_Discount</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AccountRevenue</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0E8</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>AccountRevenue</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>2.0E8</numberValue>
+                </rightValue>
+            </conditions>
+            <label>Partial Discount</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Calculate Discounts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Calculate Discounts</label>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Find_Related_Account</name>
+        <label>Find Related Account</label>
+        <locationX>118</locationX>
+        <locationY>86</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>AccountId</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <outputAssignments>
+            <assignToReference>AccountRevenue</assignToReference>
+            <field>AnnualRevenue</field>
+        </outputAssignments>
+    </recordLookups>
+    <status>InvalidDraft</status>
+    <variables>
+        <name>AccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the revenue (in US dollars) of the account associated
+with the opportunity</description>
+        <name>AccountRevenue</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>OpportunityId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KeywordList xmlns="http://soap.sforce.com/2006/04/metadata">
+    <keywords>
+        <keyword>xcx</keyword>
+    </keywords>
+    <keywords>
+        <keyword>xcl</keyword>
+    </keywords>
+    <keywords>
+        <keyword>xce</keyword>
+    </keywords>
+    <keywords>
+        <keyword>sdf</keyword>
+    </keywords>
+    <masterLabel>Test</masterLabel>
+</KeywordList>
